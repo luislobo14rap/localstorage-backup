@@ -22,7 +22,7 @@ var localStorageRestore = function() {
   a.appendChild(document.createTextNode('X'));
   a.setAttribute('href', '#');
 
-  a.style.position = 'absolute';
+  a.style.position = 'fixed';
   a.style.top = '10px';
   a.style.right = '10px';
   a.style['text-decoration'] = 'none';
@@ -32,7 +32,7 @@ var localStorageRestore = function() {
       t.remove();
   };
   t.style.width = '50%';
-  t.style.position = 'absolute';
+  t.style.position = 'fixed';
   t.style.top = '25%';
   t.style.left = '25%';
   t.style['background-color'] = 'gray';
