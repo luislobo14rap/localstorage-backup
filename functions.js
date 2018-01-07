@@ -9,7 +9,7 @@ var localStorageBackup = function() {
   var base = btoa(json);
   var href = 'data:text/javascript;charset=utf-8;base64,' + base;
   var link = document.createElement('a');
-    link.setAttribute('download', 'backup.json');
+    link.setAttribute('download', 'localStorageBackup ' + location.host + localStorageGetTimeInString(' year-month-day hours-minutes-seconds') + '.json');
   link.setAttribute('href', href);
   document.querySelector('body').appendChild(link);
   link.click();
@@ -74,4 +74,26 @@ var localStorageClear = function() {
   if(window.confirm('Do you really want to delete all ' + localStorage.length + ' localStorage items of this website?')) {
     localStorage.clear();
   }
+};
+
+var localStorageGetTimeInString = function(text){
+  let newDate = new Date();
+  //normalize month
+  let month = newDate.getMonth() + 1;
+  if( month < 10 ){
+    month = '0' + month;
+  };
+  //normalize day
+  let day = newDate.getDate();
+  if( day < 10 ){
+    day = '0' + day;
+  };
+  text = text
+    .replace(/year/g, newDate.getFullYear())
+    .replace(/month/g, month)
+    .replace(/day/g, day)
+    .replace(/hours/g, newDate.getHours())
+    .replace(/minutes/g, newDate.getMinutes())
+    .replace(/seconds/g, newDate.getSeconds());
+  return text;
 }
